@@ -6,8 +6,9 @@
 name: Build&Push Docker image
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
 
 jobs:
   build:
