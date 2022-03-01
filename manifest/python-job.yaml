@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pythonmath
+spec:
+  template:
+    spec:
+      containers:
+      - name: pythonmath
+        image: demojiri/pythondemo
+        volumeMounts:
+        - name: matrix
+          mountPath: /usr/src/app/data
+          readOnly: true
+        command: ["python" , "/usr/src/app/cheapest_path.py"]
+      volumes:
+       - name: matrix
+         configMap:
+           name: python-matrix
+      restartPolicy: Never
+  backoffLimit: 1
